@@ -40,11 +40,11 @@
 
 
 // function here function is stored in the variable named myfunction
-const myFunction = function(){
-    console.log("hello world");
+// const myFunction = function(){
+//     console.log("hello world");
     
-}
-console.log(typeof(myFunction));
+// }
+// console.log(typeof(myFunction));
 
 // // Symbol: Unique 
 // const id  = Symbol('123')
@@ -52,3 +52,30 @@ console.log(typeof(myFunction));
 // console.log(id === anotherId) // false
 
 // // https://262.ecma-international.org/5.1/#sec-11.4.3
+
+
+// memory
+// stack > primitive
+// heap memory --> non primitive
+// let myYoutube ="Surabhi"
+// let anothername = myYoutube;
+// anothername = "Mungle"
+// console.log(myYoutube);
+// console.log(anothername);
+//here anothername will give Mungle as the output
+// whereas myYoutube will give the Surabhi
+//  because stck memory me duplicate bnta hai
+
+let userone={
+    email: "user.com",
+    upi: "user@ybl"
+}
+
+let userTwo = userone 
+userTwo.email ="hi.com";
+console.log(userone.email);
+console.log(userTwo.email);
+
+// non primitive will save in heap memory
+// then userone and userTwo will get the same referance
+// dono ki values change hojayegi
