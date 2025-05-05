@@ -77,4 +77,3 @@
 
 // console.log("hello");
 
-const navbar = ()  
