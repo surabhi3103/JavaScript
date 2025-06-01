@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html events</title>
+</head>
+<body style="background-color: black; color: aliceblue;">
+    <h2>Amazing Images</h2>
+    <div>
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src=".\..\Images\sur.jpg" alt="photoshop"></li>
+            <li><img width="200px" id="river" src=".\..\Images\ee.jpg" alt="photoshop"></li>
+           <li><img width="200px" id="owl" src=".\..\Images\ss.jpg" alt="" ></li>  <!-- not good to write onclick here -->
+            <li><img width="200px" id="prayer" src=".\..\Images\be.jpg" alt="photoshop"></li>
+            <li><img width="200px" id="hey" src=".\..\Images\se.jpg" alt="photoshop"></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+
+
+        </ul>
+    </div>
+    
+</body>
+<script>
+    // document.getElementById('owl').onclick= function(){
+    //     alert("owl clicked")
+    // } this also is not a good approach
+    // hence we should use events as they give onclick and also propogation ability 
+    
+    // we need to write true or false based on the situation given
+
+    // attachEvent() use in earlier time when websites were displayed using internet explorer
+    // document.getElementById('owl').addEventListener('click', function(){
+    //     alert("owl is clicked again")
+    // },false)// here false is a default
+
+    //  event object
+    // document.getElementById('owl').addEventListener('click',function(e){
+    //     console.log(e);
+    // },false)
+    // Events we need to learn 
+
+    // ----------------------------------
+    // type: keyboard ,mouse etc : Description: Specifies the type of event that was triggered, such as 'click', 'keydown', 'mouseover', etc.
+
+    // document.addEventListener('click', function(event) {
+//   console.log(event.type); // Outputs: 'click'
+// });
+// --------------------------------
+
+    // timestamp: Description: Returns the time (in milliseconds) at which the event was created, relative to the time the page was loaded.
+// document.addEventListener('click', function(event) {
+//   console.log(event.timeStamp); // Outputs a timestamp value
+// });
+
+// ++++++++++++++++++++++++++++
+    // defaultPrevented: Description: Indicates whether event.preventDefault() was called on the event, preventing the default browser action.
+//     document.querySelector('a').addEventListener('click', function(event) {
+//   event.preventDefault();
+//   console.log(event.defaultPrevented); // Outputs: true
+// });
+
+// // ++++++++++++++++++++++++
+
+//     // target: Description: Refers to the element that triggered the event.
+//     document.getElementById('parent').addEventListener('click', function(event) {
+//   console.log(event.target); // Outputs the actual element clicked
+// });
+
+// // +++++++++++++++++++++++++++++
+//     // toElement : Description: In mouseover and mouseout events, toElement refers to the element the pointer moved to.
+//     document.getElementById('hoverArea').addEventListener('mouseout', function(event) {
+//   console.log(event.toElement); // Outputs the element the pointer moved to
+// });
+
+// //    srcElement :Description: An alias for event.target; primarily used in older versions of Internet Explorer.
+
+// document.addEventListener('click', function(event) {
+//   var target = event.target || event.srcElement;
+//   console.log(target); // Outputs the element that triggered the event
+// });
+
+
+
+// currentTarget: Description: Refers to the element to which the event handler is attached, which may differ from event.target if event delegation is used.
+// document.getElementById('parent').addEventListener('click', function(event) {
+//   console.log(event.currentTarget); // Outputs the element with the event listener
+// });
+
+
+// // clientX, clientY, 
+// Description: Provide the horizontal (clientX) and vertical (clientY) coordinates of the mouse pointer relative to the viewport when the event occurred.
+// document.addEventListener('click', function(event) {
+//   console.log(`X: ${event.clientX}, Y: ${event.clientY}`);
+// });
+
+// // screenX,screenY: Description: Provide the horizontal (screenX) and vertical (screenY) coordinates of the mouse pointer relative to the user's screen when the event occurred.
+// document.addEventListener('click', function(event) {
+//   console.log(`Screen X: ${event.screenX}, Screen Y: ${event.screenY}`);
+// });
+
+
+// altkey,ctrlkey,shiftkey
+// Description: Boolean properties indicating whether the Alt, Ctrl, or Shift keys were pressed during the event.
+// document.addEventListener('keydown', function(event) {
+//   console.log(`Alt: ${event.altKey}, Ctrl: ${event.ctrlKey}, Shift: ${event.shiftKey}`);
+// });
+
+// keyCode:Description: Returns the Unicode value of the key that was pressed. Note: keyCode is deprecated; consider using event.key instead.
+// document.addEventListener('keydown', function(event) {
+//   console.log(event.keyCode); // Outputs the numeric code of the key pressed
+// });
+
+// document.getElementById('images').addEventListener('click', function(e){
+// console.log("click inside the ul");
+// },false);
+// // this will print when clicked on images 
+
+// document.getElementById('owl').addEventListener('click', function(e){
+// console.log("owl clicked");
+// e.stopPropagation()
+// // this will stop the bubbling and only owl clicked is printed
+// // not the click inside the ul
+// },false);
+
+// owl is also in the images id
+// inconsole it will print owl clicked first and then click inside the ul for false (bubbling mode)
+//  for true it is opposite this is called capturing mode 
+
+// // for google link
+// document.getElementById('google').addEventListener('click', function(e){
+//     e.preventDefault();
+//     e.stopPropagation();
+//     console.log("google clicked");
+// },false)
+
+
+document.querySelector('#images').addEventListener('click', function(e){
+    // console.log(e.target.parentNode);
+    // let removeIt = e.target.parentNode
+    //     // removeIt.parentNode.removeChild(removeIt)
+    // removeIt.remove()
+    // if clicked on li that is bullet points whole images gets remove
+
+    console.log(e.target.tagName);
+    if(e.target.tagName==='IMG'){
+        console.log(e.target.id);
+        let removeIt= e.target.parentNode
+            removeIt.remove()
+    }
+    
+
+})
+</script>
+</html>
+
+<!-- in JS events run in a sequence -->
